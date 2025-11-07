@@ -15,4 +15,4 @@ build_ci_image:
   only:
     - master
   tags:
-    runner-local
+    - runner-local
