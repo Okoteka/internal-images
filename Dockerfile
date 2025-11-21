@@ -19,8 +19,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     docker \
     && rm -rf /var/lib/apt/lists/*
 
-# Install just runner
-RUN curl -fsSL https://just.systems/install.sh | bash -s -- --to /usr/local/bin
+# Install task runner
+RUN curl -sSL https://taskfile.dev/install.sh | sh -s -- -b /usr/local/bin
 
 WORKDIR /app
 
