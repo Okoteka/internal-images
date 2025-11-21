@@ -1,6 +1,7 @@
 stages:
   - build
-
+  - trigger
+ 
 variables:
   IMAGE_TAG_LATEST: "$CI_REGISTRY_IMAGE:latest"
   IMAGE_TAG_COMMIT: "$CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA"
@@ -16,3 +17,11 @@ build_ci_image:
     - master
   tags:
     - runner-local
+
+trigger_internal:
+  stage: trigger
+  trigger:
+    project: "Okoteka/oko-deploy-ci-image-internal"
+    branch: "master"
+  only:
+    - master
