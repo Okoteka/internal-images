@@ -19,8 +19,8 @@ stages:
     IMAGE_TAG_LATEST: "$CI_REGISTRY_IMAGE/$IMAGE_NAME:latest"
   script:
     - docker build --no-cache -f "$IMAGE_NAME/Dockerfile" -t "$IMAGE_TAG_SHA" -t "$IMAGE_TAG_LATEST" .
-    - docker push "IMAGE_TAG_SHA"
-    - docker push "IMAGE_TAG_LATEST"
+    - docker push "$IMAGE_TAG_SHA"
+    - docker push "$IMAGE_TAG_LATEST"
   after_script:
     - rm -f internal.crt
   tags:
