@@ -14,10 +14,13 @@ stages:
         exit 1
       fi
     - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin "$CI_REGISTRY"
+  variables:
+    IMAGE_TAG_SHA: "$CI_REGISTRY_IMAGE/$IMAGE_NAME:$CI_COMMIT_SHORT_SHA"
+    IMAGE_TAG_LATEST: "$CI_REGISTRY_IMAGE/$IMAGE_NAME:latest"
   script:
-    - docker build --no-cache -f "$IMAGE_NAME/Dockerfile" -t "$CI_REGISTRY_IMAGE/$IMAGE_NAME:$CI_COMMIT_SHORT_SHA" -t "$CI_REGISTRY_IMAGE/$IMAGE_NAME:latest" .
-    - docker push "$IMAGE"
-    - docker push "$IMAGE_LATEST"
+    - docker build --no-cache -f "$IMAGE_NAME/Dockerfile" -t "IMAGE_TAG_SHA" -t "IMAGE_TAG_LATEST" .
+    - docker push "IMAGE_TAG_SHA"
+    - docker push "IMAGE_TAG_LATEST"
   after_script:
     - rm -f internal.crt
   tags:
@@ -32,3 +35,4 @@ build-ansible:
     - if: '$CI_COMMIT_BRANCH == "master"'
       changes:
         - ansible/Dockerfile
+        - .gitlab-ci.yml
