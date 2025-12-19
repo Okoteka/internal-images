@@ -10,7 +10,7 @@ stages:
       elif [ -n "$INTERNAL_CA" ]; then
         echo "$INTERNAL_CA" > internal.crt
       else
-        echo "ERROR: Required variable INTERNAL_CA is not defined"
+        echo "ERROR: Required variable INTERNAL_CA is not defined."
         exit 1
       fi
     - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin "$CI_REGISTRY"
