@@ -8,7 +8,7 @@ RUN apk add --no-cache git openssh
 
 ENV GOPRIVATE=g.nas.loc
 
-RUN mkdir -p /root/.ssh &&
+RUN mkdir -p /root/.ssh && \
     ssh-keyscan g.nas.loc >> /root/.ssh/known_hosts
 
 RUN --mount=type=ssh \
