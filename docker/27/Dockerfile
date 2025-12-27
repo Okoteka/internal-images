@@ -8,9 +8,8 @@ RUN update-ca-certificates
 RUN apk add --no-cache \
     bash \
     git \
-    openssh \
-    curl \
-    ca-certificates
+    openssh-client \
+    curl 
 
 # ---- SSH  ----
 RUN mkdir -p /root/.ssh && chmod 700 /root/.ssh
