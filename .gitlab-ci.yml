@@ -58,3 +58,14 @@ build_go_1_24_6:
       changes:
         - go/1.24.6/Dockerfile
         - .gitlab-ci.yml
+
+build_docker:
+  extends:
+    - .build_template
+  variables:
+    IMAGE_NAME: "docker/27"
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "master"'
+      changes:
+        - docker/27/Dockerfile
+        - .gitlab-ci.yml
